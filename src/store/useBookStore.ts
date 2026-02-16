@@ -37,10 +37,15 @@ addBookToList: async (listId: string, bookId: string, status: string = 'à lire'
 },
 
 createAndAddBook: async (listId: string, bookData: any) => {
+  
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) return;
+  
   // 1. Créer le livre dans le catalogue global
   const { data, error } = await supabase
     .from('books')
-    .insert([bookData])
+    .insert([{...bookData, created_by: user.id }])
     .select()
     .single();
 

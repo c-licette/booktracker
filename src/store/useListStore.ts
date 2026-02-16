@@ -20,10 +20,13 @@ export const useListStore = create<ListState>((set, get) => ({
   loading: false,
 
   fetchLists: async () => {
-    set({ loading: true });
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
     const { data, error } = await supabase
       .from('lists')
       .select('*')
+      .eq('user_id', user.id)
       .order('created_at', { ascending: true });
 
     if (!error && data) {
