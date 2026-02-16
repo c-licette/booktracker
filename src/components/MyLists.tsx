@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'; // Corrigé
 import { Link } from 'react-router-dom';
 import { useListStore } from '../store/useListStore';
-import { Folder, ChevronRight, Plus } from 'lucide-react';
+import { Lock, LockOpen, Folder, ChevronRight, Plus } from 'lucide-react';
 import AddListModal from './AddListModal';
 
 export default function MyLists() {
@@ -38,7 +38,17 @@ export default function MyLists() {
               <ChevronRight className="opacity-20 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
             </div>
             <div className="mt-6">
+              <div className="flex items-center gap-2">
               <h3 className="text-xl font-bold">{list.title}</h3>
+              <span className="flex-shrink-0 opacity-30 group-hover:opacity-60 transition-opacity">
+                {list.is_public ? (
+                  <LockOpen size={14} title="Publique" />
+                ) : (
+                  <Lock size={14} title="Privée" />
+                )}
+              </span>
+              
+            </div>
               <p className="text-sm opacity-50">Cliquez pour voir les livres</p>
             </div>
           </Link>

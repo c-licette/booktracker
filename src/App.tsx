@@ -6,6 +6,7 @@ import AuthForm from './components/AuthForm'
 import Layout from './components/Layout'
 import MyLists from './components/MyLists'
 import ListView from './components/ListView'
+import FeedView from './components/FeedView'
 
 export default function App() {
   const { user, setUser, loading, setLoading } = useAuthStore()
@@ -47,7 +48,7 @@ export default function App() {
           <Route path="/list" element={<MyLists />} />
           <Route path="/dashboard" element={<div>Tableau de bord</div>} />
           <Route path="/profil" element={<div>Profil</div>} />
-          <Route path="/fil" element={<div>Fil d'Actualité</div>} />
+          <Route path="/fil" element={<FeedView />} />
           <Route path="/list/:listId" element={<ListView />} />
           <Route path="/auth" element={<Navigate to="/list" replace />} />
           <Route path="/" element={<Navigate to="/list" replace />} />
