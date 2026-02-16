@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* Configuration du thème et des variables directement en CSS (v4 style) */
+@theme {
+  --color-primary: #4f46e5;
+  
+  /* On définit nos propres composants réutilisables */
+  --shadow-glass: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+@layer base {
+  body {
+    /* bg-slate-50 en clair, bg-slate-900 en sombre automatiquement */
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300;
+  }
+}
+
+/* Classes utilitaires personnalisées */
+@utility glass-effect {
+  @apply bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-slate-200 dark:border-slate-700;
+}
+
+/* Une utilité pour tes cartes (comme la connexion) qui restent arrondies */
+@utility glass-card {
+  @apply glass-effect border shadow-sm rounded-2xl;
+}
+
+@utility input-field {
+  @apply w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none transition-all;
+}
