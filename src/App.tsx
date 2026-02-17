@@ -12,22 +12,19 @@ export default function App() {
   const { user, setUser, loading, setLoading } = useAuthStore()
 
   useEffect(() => {
-    // 1. Vérifier la session initiale
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
-      setLoading(false) // On dit au store que le chargement est FINI
+      setLoading(false)
     })
 
-    // 2. Écouter les changements d'auth
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
-      setLoading(false) // Sécurité supplémentaire
+      setLoading(false)
     })
 
     return () => subscription.unsubscribe()
   }, [setUser, setLoading])
 
-  // ON NE MET LE IF (LOADING) QU'ICI, APRÈS LE USEEFFECT
   if (loading) {
     return (
       <div className="h-screen flex items-center justify-center font-bold text-indigo-600">

@@ -48,12 +48,11 @@ export const useListStore = create<ListState>((set, get) => ({
       .insert([{ title, user_id: user.id, is_public: isPublic }]);
 
     if (!error) {
-      get().fetchLists(); // On rafraîchit la liste après l'ajout
+      get().fetchLists();
     }else{
         console.error("Erreur Supabase:", error.message);
     }
   },
-  // Dans useListStore.ts
 updateList: async (listId, updates) => {
   const { error } = await supabase
     .from('lists')
@@ -61,8 +60,7 @@ updateList: async (listId, updates) => {
     .eq('id', listId);
 
   if (error) throw error;
-  
-  // Mise à jour locale de l'état pour un rendu instantané
+
   set((state) => ({
     lists: state.lists.map((l) => (l.id === listId ? { ...l, ...updates } : l))
   }));

@@ -35,16 +35,12 @@ export default function AuthForm() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-950">
-      
-      {/* En-tête avec le titre de l'App */}
       <div className="mb-8 text-center">
         <h1 className="text-4xl font-black text-indigo-600 tracking-tighter mb-2">
           BookTracker
         </h1>
         <div className="h-1 w-12 bg-indigo-600 mx-auto rounded-full"></div>
       </div>
-
-      {/* Carte du formulaire */}
       <div className="glass-card p-8 rounded-2xl w-full max-w-md space-y-6 shadow-xl border border-white/20 bg-white dark:bg-slate-900">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-800 dark:text-white">

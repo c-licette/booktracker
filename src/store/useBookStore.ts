@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { supabase } from '../lib/supabase'
 
 export const useBookStore = create((set, get) => ({
-  booksByList: {}, // Format: { [listId]: [livres] }
+  booksByList: {},
   loading: false,
 
   fetchBooksForList: async (listId: string) => {
@@ -26,8 +26,6 @@ export const useBookStore = create((set, get) => ({
       }))
     }
   },
-
-// Dans useBookStore.ts
 addBookToList: async (listId: string, bookId: string, status: string = 'à lire') => {
   const { error } = await supabase
     .from('list_books')
@@ -42,7 +40,6 @@ createAndAddBook: async (listId: string, bookData: any) => {
 
   if (!user) return;
   
-  // 1. Créer le livre dans le catalogue global
   const { data, error } = await supabase
     .from('books')
     .insert([{...bookData, created_by: user.id }])
@@ -50,7 +47,6 @@ createAndAddBook: async (listId: string, bookData: any) => {
     .single();
 
   if (data) {
-    // 2. L'ajouter à la liste de l'utilisateur
     await get().addBookToList(listId, data.id);
   }
 },
@@ -62,7 +58,6 @@ updateBookStatus: async (userBookId: string, newStatus: string) => {
     .eq('id', userBookId);
 
   if (error) throw error;
-  //get().fetchBooksByList(currentListId); 
 }, 
 
 deleteBookFromList: async (userBookId: string) => {
