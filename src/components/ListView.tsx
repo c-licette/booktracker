@@ -36,7 +36,6 @@ export default function ListView() {
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link 
@@ -47,7 +46,6 @@ export default function ListView() {
           </Link>
           <div className="flex items-center gap-3">
             <h1 className="text-3xl font-black tracking-tight">{currentList.title}</h1>
-            {/* Petit indicateur de visibilité à côté du titre */}
             <div className="opacity-40">
               {currentList.is_public ? <LockOpen size={18} /> : <Lock size={18} />}
             </div>
@@ -55,7 +53,6 @@ export default function ListView() {
         </div>
 
         <div className="flex items-center gap-2">
-          {/* BOUTON ÉCROU (Settings) */}
           <button 
             onClick={() => setShowSettingsModal(true)}
             className="p-2.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 rounded-xl transition-all"
@@ -63,8 +60,6 @@ export default function ListView() {
           >
             <Settings size={22} />
           </button>
-
-          {/* Bouton Ajouter */}
           <button 
             onClick={() => setShowAddModal(true)}
             className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20 active:scale-95"
@@ -73,8 +68,6 @@ export default function ListView() {
           </button>
         </div>
       </div>
-
-      {/* Grille de livres / État Vide */}
       {books.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 px-6 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-3xl space-y-4">
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-full text-slate-300">
@@ -119,8 +112,6 @@ export default function ListView() {
           ))}
         </div>
       )}
-
-      {/* MODALES */}
       {showAddModal && (
         <AddBookModal 
           listId={listId!} 

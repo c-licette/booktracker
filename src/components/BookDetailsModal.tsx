@@ -1,16 +1,11 @@
-import { useState } from 'react'; // Ne pas oublier l'import
-import { X, Check, Trash2 } from 'lucide-react'; // Ajout de Check
+import { useState } from 'react'; 
+import { X, Check, Trash2 } from 'lucide-react';
 
 export default function BookDetailsModal({ item, onClose, onStatusChange, onDelete }) {
-  // 1. On définit les options simplement
   const statusOptions = ['à lire', 'lu', 'en cours', 'acheté'];
-  
-  // 2. Les états pour gérer la modification
   const [currentStatus, setCurrentStatus] = useState(item.status || 'à lire');
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
-  // 3. La fonction pour sauvegarder
   const handleSave = async () => {
     setIsSaving(true);
     await onStatusChange(item.id, currentStatus);
@@ -35,8 +30,6 @@ export default function BookDetailsModal({ item, onClose, onStatusChange, onDele
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
       <div className="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl flex flex-col md:flex-row">
-        
-        {/* Partie Gauche : Image (Ton style conservé) */}
         <div className="w-full md:w-1/2 bg-slate-100 dark:bg-slate-800">
           <img 
             src={item.books.cover_url} 
@@ -44,8 +37,6 @@ export default function BookDetailsModal({ item, onClose, onStatusChange, onDele
             alt={item.books.title}
           />
         </div>
-
-        {/* Partie Droite : Infos */}
         <div className="p-8 w-full md:w-1/2 relative flex flex-col">
           <button onClick={onClose} className="absolute top-4 right-4 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
             <X size={20} />
@@ -58,8 +49,6 @@ export default function BookDetailsModal({ item, onClose, onStatusChange, onDele
             <label className="block text-sm font-semibold uppercase tracking-wider text-slate-400">
               Statut du livre
             </label>
-
-            {/* LE SELECT CORRIGÉ POUR LA LISIBILITÉ */}
             <select 
               value={currentStatus}
               onChange={(e) => setCurrentStatus(e.target.value)}
@@ -76,8 +65,6 @@ export default function BookDetailsModal({ item, onClose, onStatusChange, onDele
               ))}
             </select>
           </div>
-
-          {/* BOUTON VALIDER (Ton style conservé) */}
           <div className="mt-8 pt-6 border-t border-slate-50 dark:border-slate-800">
             <button 
               onClick={handleSave}

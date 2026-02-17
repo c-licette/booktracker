@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
-// 1. On importe le bon Store
 import { useFeedStore } from '../store/useFeedStore'; 
 import { User, Clock } from 'lucide-react';
 
 export default function FeedView() {
-  // 2. On récupère les données et la fonction depuis useFeedStore
   const { activities, loading, fetchGlobalFeed } = useFeedStore();
 
   useEffect(() => {
@@ -25,7 +23,6 @@ export default function FeedView() {
       <div className="space-y-6">
         {activities.map((activity) => (
           <div key={activity.id} className="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex gap-6 hover:shadow-md transition-shadow">
-            {/* Cover du livre */}
             <div className="w-20 h-28 flex-shrink-0 rounded-xl overflow-hidden shadow-md bg-slate-100">
               <img 
                 src={activity.books?.cover_url} 
@@ -33,13 +30,10 @@ export default function FeedView() {
                 alt={activity.books?.title} 
               />
             </div>
-
-            {/* Infos de l'activité */}
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 mb-1">
                 <User size={14} />
                 <span className="font-black text-[10px] uppercase tracking-widest">
-                  {/* Note le chemin : activity.lists.profiles.username */}
                   {activity.lists?.profiles?.username || "Anonyme"}
                 </span>
               </div>

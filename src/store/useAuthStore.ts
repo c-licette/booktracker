@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabase'
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
-  loading: true, // Commence à true pour éviter le flash du formulaire
+  loading: true,
   setUser: (user) => set({ user, loading: false }),
   setLoading: (loading) => set({ loading }),
 
@@ -35,7 +35,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 logout: async () => {
   console.log("Déconnexion en cours...");
   await supabase.auth.signOut();
-  set({ user: null, loading: false }); // <-- SI CETTE LIGNE MANQUE, RIEN NE BOUGE
+  set({ user: null, loading: false });
   console.log("Store vidé !");
 }
 }))

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Search, Plus, BookPlus, X, Check } from 'lucide-react';
+import { Search, Plus, BookPlus, X} from 'lucide-react';
 
 export default function AddBookModal({ listId, onClose, onAdd, onCreateAndAdd }: any) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -8,7 +8,6 @@ export default function AddBookModal({ listId, onClose, onAdd, onCreateAndAdd }:
   const [showManualForm, setShowManualForm] = useState(false);
   const [formData, setFormData] = useState({ title: '', author: '', type: 'Roman', cover_url: '', isbn: '' });
 
-  // Recherche en temps réel dans la table 'books'
   useEffect(() => {
     const searchBooks = async () => {
       if (searchTerm.length < 2) {
@@ -44,8 +43,6 @@ export default function AddBookModal({ listId, onClose, onAdd, onCreateAndAdd }:
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-
-            {/* Résultats de recherche */}
             <div className="space-y-2 max-h-60 overflow-y-auto">
               {results.map(book => (
                 <button 
@@ -78,7 +75,6 @@ export default function AddBookModal({ listId, onClose, onAdd, onCreateAndAdd }:
             </div>
           </div>
         ) : (
-          /* Formulaire de création manuelle */
           <form onSubmit={(e) => { 
             e.preventDefault(); 
             onCreateAndAdd(listId, formData); 

@@ -27,7 +27,6 @@ export default function ListSettingsModal({ list, onClose, onUpdate, onDelete })
         </div>
 
         <div className="space-y-6">
-          {/* Nom de la liste */}
           <div className="space-y-2">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Nom de la collection</label>
             <input 
@@ -37,8 +36,6 @@ export default function ListSettingsModal({ list, onClose, onUpdate, onDelete })
               className="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-indigo-500 outline-none font-bold"
             />
           </div>
-
-          {/* Toggle Public/Privé */}
           <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800">
             <div className="flex items-center gap-3">
               {isPublic ? <Globe className="text-indigo-500" size={20}/> : <Lock className="text-slate-400" size={20}/>}
